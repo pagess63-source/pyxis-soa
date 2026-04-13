@@ -1,0 +1,40 @@
+name: SOA — Mise à jour hebdomadaire
+
+on:
+  schedule:
+    # Chaque lundi à 05:00 UTC = 07:00 CEST (heure suisse été)
+    - cron: '0 5 * * 1'
+
+  # Déclenchement manuel depuis l'onglet Actions (pour tester)
+  workflow_dispatch:
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # Nécessaire pour pusher le HTML généré
+
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installation des dépendances
+        run: pip install -r requirements.txt
+
+      - name: Génération du tableau de bord
+        run: python scripts/generate_dashboard.py
+
+      - name: Commit et push du dashboard
+        run: |
+          git config --local user.email "soa-bot@pyxis-op.ch"
+          git config --local user.name "SOA Bot — Pyxis-OP"
+          git add docs/index.html
+          # Ne commite que s'il y a des changements
+          git diff --staged --quiet && echo "Aucun changement." || \
+            git commit -m "SOA: Mise à jour du $(date +'%d.%m.%Y') [auto]"
+          git push
