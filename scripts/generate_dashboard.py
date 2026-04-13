@@ -92,6 +92,16 @@ AXES = [
 
 WATCHED_SITES = [
     {
+        "id": "oplit-site", "label": "Oplit — Site officiel",
+        "url": "https://www.oplit.com",
+        "note": "Concurrent prioritaire · Financé Vi Partners · Cible Suisse",
+        "color": "#ef4444", "accent": "239,68,68",
+        "extra_urls": [
+            "https://www.oplit.com/blog-ordonnancement-planification-aps-industrie",
+            "https://www.oplit.com/articles",
+        ],
+    },
+    {
         "id": "bos", "label": "BOS-Software",
         "url": "https://www.bos-software.com",
         "note": "Ancien associé · ScreeN MES · St-Imier",
