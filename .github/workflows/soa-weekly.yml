@@ -12,7 +12,7 @@ jobs:
   update-dashboard:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # Nécessaire pour pusher le HTML généré
+      contents: write
 
     steps:
       - name: Checkout du repo
@@ -28,13 +28,16 @@ jobs:
 
       - name: Génération du tableau de bord
         run: python scripts/generate_dashboard.py
+        env:
+          GMAIL_USER:         ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ALERT_EMAIL:        ${{ secrets.ALERT_EMAIL }}
 
       - name: Commit et push du dashboard
         run: |
           git config --local user.email "soa-bot@pyxis-op.ch"
           git config --local user.name "SOA Bot — Pyxis-OP"
           git add docs/index.html
-          # Ne commite que s'il y a des changements
           git diff --staged --quiet && echo "Aucun changement." || \
             git commit -m "SOA: Mise à jour du $(date +'%d.%m.%Y') [auto]"
           git push
