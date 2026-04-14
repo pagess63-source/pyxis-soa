@@ -123,6 +123,27 @@ WATCHED_SITES = [
         "color": "#64748b", "accent": "100,116,139",
         "extra_urls": [],
     },
+    {
+        "id": "stemys", "label": "Stemys",
+        "url": "https://stemys.io",
+        "note": "Logiciel industriel · À surveiller",
+        "color": "#8b5cf6", "accent": "139,92,246",
+        "extra_urls": [],
+    },
+    {
+        "id": "digiinov", "label": "Digiinov",
+        "url": "https://digiinov.ch",
+        "note": "Digitalisation industrie suisse",
+        "color": "#0ea5e9", "accent": "14,165,233",
+        "extra_urls": [],
+    },
+    {
+        "id": "weareteam", "label": "WeAreTeam",
+        "url": "https://weareteam.org",
+        "note": "À surveiller",
+        "color": "#f97316", "accent": "249,115,22",
+        "extra_urls": [],
+    },
 ]
 
 # ══════════════════════════════════════════════════════════════
